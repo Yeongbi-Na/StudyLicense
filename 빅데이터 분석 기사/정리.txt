@@ -1,0 +1,107 @@
+exam %>% filter(class==1)
+exam %>% filter(class%in%c(1,2,3))
+exam %>% arrange(desc(match))
+
+
+
+%/% 몫
+%% 나머지
+
+
+boxplot(credit$age)$stats
+
+table(is.na(변수)) 
+ifesle(~~, NA, ~)
+
+mean(변수, na.rm=T)
+
+na.omit(dataframe) 결측치있는 행 모두 제거
+
+
+그래프그리기 library(ggplot2)
+
+ggplot(data=, aes(x= , y= )) + geom_point() >> 산점도
+			+xlim(3,6)+ylim(~)
+
+geom_point: 산점도
+geom_col() : 막대그래프
+geom_bar() : 빈도그래프 >> qqplot(data=, aes(x=)) + ~~
+geom_line(): 선 그래프
+geom_boxplot():
+
+
+
+###knn###  library(class)
+정규화 중요 >> 거리기반  >>  as.data.frame(scale(  ))
+				  >>  lapply(data,normalize)
+pred_test=knn(train, test, train_label)
+CrossTable(Pred_test, wbcd_test_label) ###library(gmodels)
+
+
+
+####decision tree##
+#data random
+set.seed(12345)
+credit_rand=credit[order(runif(1000)),]
+
+library(C50)  C5.0(train_x, train_y, ) 
+boosting>>C5.0(train_x, train_y, trials= )
+error cost>> C5.0(train_x, train_y, costs= )// error=matrix(c(1,0,4,0),nrow=2)
+
+library(tree)
+tree(y~., data= )
+
+#prunning
+cv_model= cv.tree(model, FUN=prune.misclass)
+plot(cv_model)
+credit_tree_prun=prune.misclass(credit_tree, best=5)
+plot(credit_tree_prun)
+text(credit_tree_prun)
+
+#predict
+credit_tree_pred= predict(credit_tree_prun, credit_test, type="class") #타입 설정해줘야됨
+CrossTable( credit_tree_pred,credit_test$default)
+
+
+
+
+
+
+
+#####kmeans clustering####
+table(teens$gender, useNA="ifany") NA도 같이 빈도수 보기
+#그룹별 통계량 보기
+aggregate(data=teens, age~gradyear, mean,na.rm=TRUE)
+
+#그룹 통계량을 데이터마다 저장 - 졸업년도별 나이의 평균값
+ave_age=ave(teens$age, teens$gradyear,FUN=function(x){mean(x,na.rm=TRUE)}) 
+
+#거리기반이므로 정규화 
+as.data.frame(scale())
+kmeans(data, clsuter개수)
+
+#실루엣 계수 - 이걸 함수화해서 각 실루엣계쑤를 저장해서 plot
+distance <- dist(interest_z, method= "euclidean")
+ss <- silhouette(mycluster$cluster, dist(data))
+avgSil <- mean(ss[, 3])
+#실루엣계수가 높을수록 굿
+plot(k, avgsil)
+
+##실루엣계수 쉽게##
+library(factoextra)
+fviz_nbclust(data, kmeans, method="silhouette") #plot 그리기
+
+
+
+
+
+
+
+
+
+
+
+
+########회귀###
+
+
